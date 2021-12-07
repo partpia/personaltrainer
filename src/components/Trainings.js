@@ -22,11 +22,7 @@ function Trainings(props) {
         .then(data => setTrainings(data))
         .catch(err => console.error(err))
     }
-    /*
-    const dateFormatter = (params) => {
-        return format(new Date(params.value), 'dd/MM/yyyy');
-    }
-    */
+
     const onGridReady = (params) => {
         setGridApi(params.api);
         setColumnApi(params.columnApi);
@@ -35,11 +31,15 @@ function Trainings(props) {
     const onFilterTextChanged = (e) => {
         gridApi.setQuickFilter(e.target.value);
     }
-    /*
+    
     const nameFormatter = (params) => {
-        return params.data.firstname;
+        if (params.data.customer != null) {
+            return params.data.customer.firstname + " " + params.data.customer.lastname;
+        } else {
+            return "";
+        }        
     }
-    */
+    
     const trainingColumns = [
         {
             headerName: '',
@@ -57,8 +57,8 @@ function Trainings(props) {
         {   headerName:'Customer',
             sortable: true,
             filter: true,
-            valueGetter: params => {return params.data.customer.firstname + ' ' + params.data.customer.lastname}
-        } // if not null
+            cellRendererFramework: params => nameFormatter(params)
+        }
     ]
 
     return (

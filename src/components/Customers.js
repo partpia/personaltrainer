@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { AgGridReact } from 'ag-grid-react';
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-alpine.css';
-import { Box, Flex, Icon, Input, InputGroup, InputLeftElement } from "@chakra-ui/react";
-import { BiSearch } from "react-icons/bi";
+import { Box, Button, Flex, Icon, Input, InputGroup, InputLeftElement } from "@chakra-ui/react";
+import { BiDownload, BiSearch } from "react-icons/bi";
 import AddCustomer from "./AddCustomer";
 import EditCustomer from "./EditCustomer";
 import DeleteCustomer from "./DeleteCustomer";
@@ -13,8 +13,7 @@ function Customers(props) {
 
     const [customers, setCustomers] = useState([]);
     const [gridApi, setGridApi] = useState(null);
-    const [columnApi, setColumnApi] = useState(null);
-    //const toast = useToast();
+    const [gridColumnApi, setGridColumnApi] = useState(null);
 
     useEffect(() => {
         fetchCustomers();
@@ -34,18 +33,27 @@ function Customers(props) {
 
     const onGridReady = (params) => {
         setGridApi(params.api);
-        setColumnApi(params.columnApi);
+        setGridColumnApi(params.columnApi);
+    }
+
+    const exportCustomerCsv = () => {
+        const params = {
+            columnKeys: ['firstname', 'lastname', 'streetaddress', 'postcode', 'city', 'email', 'phone']
+        }
+        gridApi.exportDataAsCsv(params);
     }
 
     const onFilterTextChanged = (e) => {
         gridApi.setQuickFilter(e.target.value);
     }
 
+
     const columns = [
         {
             headerName:'',
             sortable: false,
             filter: false,
+            skipPinnedTop: true,
             width: 50,
             field: 'links.0.href',
             cellRendererFramework: params => 
@@ -67,7 +75,7 @@ function Customers(props) {
             width: 60,
             field: 'links.0.href',
             cellRendererFramework: params =>
-                < AddTraining customerUrl={params.value} customerData={params.data}  infoMsg={props.infoMsg}/>
+                < AddTraining customerUrl={params.value} customerData={params.data} infoMsg={props.infoMsg}/>
         },
         { field: 'firstname', sortable: true, filter: true, width: 140},
         { field: 'lastname', sortable: true, filter: true, width: 140},
@@ -80,15 +88,18 @@ function Customers(props) {
 
     return (
         <div>
-            <div>
+            <div style={{ width: '90%', margin: 'auto' }}>
                 <Flex>
                     <Box p="4">
                         <AddCustomer fetchCustomers={fetchCustomers} infoMsg={props.infoMsg} />
                     </Box>
                     <Box p="4">
+                        <Button onClick={() => exportCustomerCsv()} colorScheme="gray" leftIcon={<Icon as={BiDownload} w={6} h={6} />} >Download customer list</Button>
+                    </Box>
+                    <Box p="4" alignSelf="right">
                         <InputGroup>
                             <InputLeftElement pointerEvents="none" children={< Icon as={BiSearch} w={5} h={5}/>}  /> 
-                            <Input variant="flushed" focusBorderColor="lime" type="search" className="search" style={{alignItems:'right'}} placeholder="Search" onChange={onFilterTextChanged} />
+                            <Input variant="flushed" focusBorderColor="lime" type="search" className="search" placeholder="Search" onChange={onFilterTextChanged} />
                         </InputGroup>
                     </Box>
                 </Flex>

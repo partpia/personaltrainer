@@ -13,7 +13,7 @@ import {
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import formatISO from 'date-fns/formatISO';
-import fi from 'date-fns/locale/fi';
+import { fi } from 'date-fns/locale/';
 
 function AddTraining(props) {
 
@@ -70,38 +70,38 @@ function AddTraining(props) {
                             onClick={onOpen} />
             </Tooltip>
             <Modal closeOnOverlayClick={false} isOpen={isOpen} onClose={onClose}>
-            <ModalOverlay />
-            <ModalContent>
-                <ModalHeader>New Training to <b>{customerName.firstname + " " + customerName.lastname}</b></ModalHeader>
-                <ModalCloseButton />
-                <ModalBody pb={6}>
-                    <FormControl>
-                        <FormLabel>Activity</FormLabel>
-                        <Input name="activity" value={training.activity} onChange={inputChanged} placeholder="Activity" />
-                    </FormControl>
-                    <FormControl>
-                        <FormLabel>Date and time</FormLabel>
-                        <DatePicker
-                            selected={date}
-                            onChange={(date) => handleChange(date)}
-                            showWeekNumbers
-                            locale={fi}
-                            showTimeSelect
-                            timeFormat="HH:mm"
-                            timeIntervals={10}
-                            timeCaption="time"
-                            dateFormat="dd/MM/yyyy hh:mm" />
-                    </FormControl>
-                    <FormControl>
-                        <FormLabel>Duration</FormLabel>
-                        <Input name="duration" value={training.duration} onChange={inputChanged} placeholder="Duration" />
-                    </FormControl>
-                </ModalBody>
-                <ModalFooter>
-                <Button colorScheme="blue" mr={3} onClick={() => saveTraining(training)}>Save</Button>
-                <Button onClick={onClose}>Cancel</Button>
-                </ModalFooter>
-            </ModalContent>
+                <ModalOverlay />
+                <ModalContent>
+                    <ModalHeader>New Training to <b>{customerName.firstname + " " + customerName.lastname}</b></ModalHeader>
+                    <ModalCloseButton />
+                    <ModalBody pb={6}>
+                        <FormControl>
+                            <FormLabel>Activity</FormLabel>
+                            <Input name="activity" value={training.activity} onChange={inputChanged} placeholder="Activity" />
+                        </FormControl><br/>
+                        <FormControl>
+                            <FormLabel>Date and time</FormLabel>
+                            <DatePicker
+                                selected={date}
+                                onChange={(date) => handleChange(date)}
+                                showWeekNumbers
+                                locale={fi}
+                                showTimeSelect
+                                timeFormat="HH:mm"
+                                timeIntervals={5}
+                                timeCaption="time"
+                                dateFormat="dd/MM/yyyy H:mm" />
+                        </FormControl><br/>
+                        <FormControl>
+                            <FormLabel>Duration</FormLabel>
+                            <Input name="duration" value={training.duration} onChange={inputChanged} placeholder="Duration" />
+                        </FormControl>
+                    </ModalBody>
+                    <ModalFooter>
+                        <Button colorScheme="blue" mr={3} onClick={() => saveTraining(training)}>Save</Button>
+                        <Button onClick={onClose}>Cancel</Button>
+                    </ModalFooter>
+                </ModalContent>
             </Modal>
         </div>
     );
