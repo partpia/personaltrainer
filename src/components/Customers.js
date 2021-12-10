@@ -16,18 +16,13 @@ function Customers(props) {
     const [gridColumnApi, setGridColumnApi] = useState(null);
 
     useEffect(() => {
-        fetchCustomers();
-    }, []);
+        fetchCustomers()
+    }, [])
 
     const fetchCustomers = () => {
         fetch('https://customerrest.herokuapp.com/api/customers')
-            .then(response => {
-                if (response.ok)
-                    response.json()
-                    .then(data => setCustomers(data.content))
-                else
-                    alert('Could not find customers')
-        })
+        .then(response => response.json())
+        .then(data => setCustomers(data.content))
         .catch(err => console.error(err))
     }
 
@@ -53,7 +48,6 @@ function Customers(props) {
             headerName:'',
             sortable: false,
             filter: false,
-            skipPinnedTop: true,
             width: 50,
             field: 'links.0.href',
             cellRendererFramework: params => 

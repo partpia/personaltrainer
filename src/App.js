@@ -1,10 +1,12 @@
 import { Heading } from "@chakra-ui/react";
 import { Icon, Tabs, TabList, TabPanels, Tab, TabPanel } from "@chakra-ui/react";
-import { BiCalendarWeek, BiRun, BiUser } from "react-icons/bi";
+import { BiBarChartSquare, BiCalendarWeek, BiRun, BiUser } from "react-icons/bi";
 import './App.css';
 import Customers from './components/Customers';
 import Trainings from "./components/Trainings";
+import Calendar from "./components/Calendar";
 import { useToast } from "@chakra-ui/react";
+import Statistics from "./components/Statistics";
 
 function App() {
 
@@ -29,6 +31,7 @@ function App() {
           <Tab><Icon marginRight='6px' as={BiUser} />Customers</Tab>
           <Tab><Icon marginRight='6px' as={BiRun} />Trainings</Tab>
           <Tab><Icon marginRight='6px' as={BiCalendarWeek} />Calendar</Tab>
+          <Tab><Icon marginRight='6px' as={BiBarChartSquare} />Statistics</Tab>
         </TabList>
         <TabPanels>
           <TabPanel>
@@ -36,6 +39,12 @@ function App() {
           </TabPanel>
           <TabPanel>
             < Trainings infoMsg={infoMsg} />
+          </TabPanel>
+          <TabPanel>
+            < Calendar />
+          </TabPanel>
+          <TabPanel>
+            < Statistics />
           </TabPanel>
         </TabPanels>
       </Tabs>

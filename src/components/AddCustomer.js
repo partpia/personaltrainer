@@ -10,7 +10,7 @@ import {
   } from "@chakra-ui/react";
   import { Button, Icon, useDisclosure } from "@chakra-ui/react";
   import { BiUserPlus } from "react-icons/bi";
-  import { FormControl, FormLabel, Input, initialRef } from "@chakra-ui/react";
+  import { FormControl, FormLabel, Input } from "@chakra-ui/react";
 
 function AddCustomer(props) {
 

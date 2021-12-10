@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { AgGridReact } from 'ag-grid-react';
-import { Box, Button, Flex, Icon, Input, InputGroup, InputLeftElement } from "@chakra-ui/react";
+import { Box, Flex, Icon, Input, InputGroup, InputLeftElement } from "@chakra-ui/react";
 import { BiSearch } from "react-icons/bi";
 import { format } from 'date-fns';
 import DeleteTraining from "./DeleteTraining";
 
 function Trainings(props) {
 
-    const [training, setTraining] = useState('');
     const [trainings, setTrainings] = useState([]);
     const [gridApi, setGridApi] = useState(null);
     const [columnApi, setColumnApi] = useState(null);
@@ -63,7 +62,7 @@ function Trainings(props) {
 
     return (
         <div>
-            <div>
+            <div style={{ width: '90%', margin: 'auto' }}>
                 <Flex>
                     <Box p="4">
                         <InputGroup>
