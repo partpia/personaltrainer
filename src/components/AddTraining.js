@@ -19,10 +19,6 @@ function AddTraining(props) {
 
     const { isOpen, onOpen, onClose } = useDisclosure();
     const [date, setDate] = useState(new Date());
-    const [customerName, setCustomerName] = useState({
-        firstname: props.customerData.firstname,
-        lastname: props.customerData.lastname
-    });
 
     const [training, setTraining] = useState({
         date: '',
@@ -39,8 +35,6 @@ function AddTraining(props) {
         setDate(date);
         let formattedDate = formatISO(date);
         setTraining({...training, date: formattedDate});
-        console.log(formattedDate);
-        console.log(training);
     }
 
     const saveTraining = (training) => {
@@ -51,9 +45,7 @@ function AddTraining(props) {
                 body: JSON.stringify(training)
             })
         .then(onClose())
-        .then(_ => {
-            props.infoMsg("Training added", "Training added successfully to customer", "success");
-        })
+        .then(_ => props.infoMsg("Training added", "", "success"))
         .catch(err => console.error(err))
     }
 
@@ -72,7 +64,7 @@ function AddTraining(props) {
             <Modal closeOnOverlayClick={false} isOpen={isOpen} onClose={onClose}>
                 <ModalOverlay />
                 <ModalContent>
-                    <ModalHeader>New Training to <b>{customerName.firstname + " " + customerName.lastname}</b></ModalHeader>
+                    <ModalHeader>New Training to <b>{props.customerData.firstname + " " + props.customerData.lastname}</b></ModalHeader>
                     <ModalCloseButton />
                     <ModalBody pb={6}>
                         <FormControl>

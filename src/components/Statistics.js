@@ -1,27 +1,22 @@
 import React, { useEffect, useState } from "react";
-import { groupBy, map, sumBy, chain } from "lodash";
-import { VictoryBar, VictoryChart, VictoryAxis, VictoryTheme } from 'victory';
+import _ from "lodash";
+import { VictoryAxis, VictoryBar, VictoryChart, VictoryTheme } from 'victory';
 
 function Statistics() {
 
-    const _ = require('lodash');
     const [chartData, setChartData] = useState([]); 
     
     useEffect(() => {
-        fetchTrainingsAmounts()
-    }, [])
-
-    const fetchTrainingsAmounts = () => {
         fetch('https://customerrest.herokuapp.com/api/trainings')
-        .then(response => {
-            if (response.ok)
+        .then((response) => {
+            if (response.ok) {
                 response.json()
                 .then(data => parseChartData(data.content))
-            else
-                alert('error')
+            } else
+                alert('Data not found')
         })
         .catch(err => console.error(err))
-    }
+    }, [])
 
     const parseChartData = (data) => {
         let parsedData = (data.map(({ duration, activity }) => ({
@@ -36,7 +31,6 @@ function Statistics() {
                     'duration': _.sumBy(o, 'duration') }))
             .value();
         setChartData(groupSumData);
-        console.log(chartData);
     }
 
     return (
@@ -45,7 +39,8 @@ function Statistics() {
                 padding={{ top: 20, bottom: 30, left: 40, right: 20 }}
                 theme={VictoryTheme.material}
                 domainPadding={20}
-                height={130}>
+                height={130}
+                animate={{duration: 600}}>
                 <VictoryAxis
                     tickFormat={chartData.activity}
                 />
@@ -57,7 +52,7 @@ function Statistics() {
                     data={chartData}
                     x="activity"
                     y="duration"
-                    barWidth={30}
+                    barWidth={15}
                     />
             </VictoryChart>
         </div>     
