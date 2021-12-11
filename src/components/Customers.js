@@ -69,20 +69,20 @@ function Customers(props) {
             width: 60,
             field: 'links.0.href',
             cellRendererFramework: params =>
-                < AddTraining customerUrl={params.value} customerData={params.data} infoMsg={props.infoMsg}/>
+                < AddTraining customerUrl={params.value} customerData={params.data} infoMsg={props.infoMsg} />
         },
-        { field: 'firstname', sortable: true, filter: true, width: 140},
-        { field: 'lastname', sortable: true, filter: true, width: 140},
+        { field: 'firstname', sortable: true, filter: true, width: 120},
+        { field: 'lastname', sortable: true, filter: true, width: 120},
         { field: 'streetaddress', headerName: 'Address'},
         { field: 'postcode', sortable: true, width: 100},
-        { field: 'city', sortable: true, width: 140},
-        { field: 'email'},
-        { field: 'phone'}
+        { field: 'city', sortable: true, width: 130},
+        { field: 'email', width: 190},
+        { field: 'phone', width: 140}
     ]
 
     return (
         <div>
-            <div style={{ width: '90%', margin: 'auto' }}>
+            <div style={{ width: '95%', margin: 'auto' }}>
                 <Flex>
                     <Box p="4">
                         <AddCustomer fetchCustomers={fetchCustomers} infoMsg={props.infoMsg} />
@@ -98,13 +98,13 @@ function Customers(props) {
                     </Box>
                 </Flex>
             </div>
-            <div className="ag-theme-alpine" style={{ marginTop: 20, height: 450, width: '90%', margin: 'auto' }}>
+            <div className="ag-theme-alpine" style={{ marginTop: 20, height: 400, width: '95%', margin: 'auto' }}>
                 <AgGridReact
                     onGridReady={onGridReady}
                     rowData={customers}
                     columnDefs={columns}
                     pagination={true}
-                    paginationPageSize={8}
+                    paginationPageSize={7}
                     suppressCellSelection={true}>
                 </AgGridReact>
             </div>

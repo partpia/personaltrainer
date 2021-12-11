@@ -19,7 +19,7 @@ function AddTraining(props) {
 
     const { isOpen, onOpen, onClose } = useDisclosure();
     const [date, setDate] = useState(new Date());
-
+    
     const [training, setTraining] = useState({
         date: '',
         activity: '',

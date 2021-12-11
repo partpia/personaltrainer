@@ -19,9 +19,9 @@ function Calendar() {
             if (response.ok)
                 response.json()
                 .then(data => setEvents(data.map(({activity, date, duration, customer }) => ({
-                    title : activity + '/' + customer.firstname + ' ' + customer.lastname,
+                    title : customer ? activity + '/' + customer.firstname + ' ' + customer.lastname : activity,
                     start : date,
-                    end : formatISO(addMinutes(parseISO(date), duration))
+                    end : date ? formatISO(addMinutes(parseISO(date), duration)) : null
         }))))
                 else
                     alert('error')
@@ -42,7 +42,7 @@ function Calendar() {
                 slotLabelFormat={{
                     hour: '2-digit',
                     minute: '2-digit',
-                    hour12:false
+                    hour12: false
                 }}
                 scrollTime="08:00:00"
                 events={events}
@@ -50,7 +50,7 @@ function Calendar() {
                 eventTimeFormat= {{ 
                     hour: '2-digit',
                     minute: '2-digit',
-                    hour12:false
+                    hour12: false
                 }}
                 height={600}
                 firstDay={1}

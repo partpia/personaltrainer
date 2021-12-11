@@ -8,9 +8,9 @@ import {
     ModalBody,
     ModalCloseButton,
   } from "@chakra-ui/react";
-  import { Button, Icon, useDisclosure } from "@chakra-ui/react";
-  import { BiUserPlus } from "react-icons/bi";
-  import { FormControl, FormLabel, Input } from "@chakra-ui/react";
+import { Button, Icon, useDisclosure } from "@chakra-ui/react";
+import { BiUserPlus } from "react-icons/bi";
+import { FormControl, FormLabel, Input } from "@chakra-ui/react";
 
 function AddCustomer(props) {
 
@@ -53,7 +53,7 @@ function AddCustomer(props) {
                 <ModalHeader>New customer</ModalHeader>
                 <ModalCloseButton />
                 <ModalBody pb={6}>
-                    <FormControl>
+                    <FormControl id="firstname" isRequired>
                         <FormLabel>First name</FormLabel>
                         <Input name="firstname" value={customer.firstname} onChange={inputChanged} placeholder="First name" />
                     </FormControl>

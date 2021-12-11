@@ -22,9 +22,9 @@ function DeleteTraining(props) {
                 if (response.ok) {
                     onClose();
                     props.fetchTrainings();
-                    props.infoMsg("Training deleted!", "", "success");
+                    props.infoMsg("Training deleted", "", "success");
                 } else {
-                    props.infoMsg("Delete failed!", "error");
+                    props.infoMsg("Delete failed !", "error");
                 }
             })
             .catch(err => console.error(err))

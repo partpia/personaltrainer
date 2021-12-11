@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
+import { Box, Flex } from "@chakra-ui/react";
 import _ from "lodash";
-import { VictoryAxis, VictoryBar, VictoryChart, VictoryTheme } from 'victory';
+import ChartBar from "./ChartBar";
+import Pie from "./Pie";
 
 function Statistics() {
 
@@ -19,7 +21,7 @@ function Statistics() {
     }, [])
 
     const parseChartData = (data) => {
-        let parsedData = (data.map(({ duration, activity }) => ({
+        let parsedData = (data.map(({ activity, duration }) => ({
             activity : activity,
             duration : duration
         })))
@@ -31,30 +33,19 @@ function Statistics() {
                     'duration': _.sumBy(o, 'duration') }))
             .value();
         setChartData(groupSumData);
+        console.log(chartData);
     }
 
     return (
-        <div>
-            <VictoryChart
-                padding={{ top: 20, bottom: 30, left: 40, right: 20 }}
-                theme={VictoryTheme.material}
-                domainPadding={20}
-                height={130}
-                animate={{duration: 600}}>
-                <VictoryAxis
-                    tickFormat={chartData.activity}
-                />
-              <VictoryAxis
-                dependentAxis
-                tickFormat={chartData.duration}
-              />
-                <VictoryBar
-                    data={chartData}
-                    x="activity"
-                    y="duration"
-                    barWidth={15}
-                    />
-            </VictoryChart>
+        <div style={{ width: '95%', margin: 'auto' }}>        
+            <Flex>
+                <Box p="4">
+                    <ChartBar chartData={chartData} />
+                </Box>
+                <Box p="4">
+                    <Pie chartData={chartData} />
+                </Box>
+            </Flex>
         </div>     
     );
 }

@@ -47,12 +47,13 @@ function Trainings(props) {
             cellRendererFramework: params =>
                 < DeleteTraining id={params.value} fetchTrainings={fetchTrainings} infoMsg={props.infoMsg} />
         },
-        { field: 'activity', sortable: true},
+        { field: 'activity', sortable: true, filter: true},
         {   field: 'date',
+            filter: true,
             sortable: true,
             cellRendererFramework: params => format(new Date(params.value), 'dd.MM.yyyy HH:mm')
         },
-        { headerName: 'Duration (min) ', field: 'duration'},
+        { headerName: 'Duration (min) ', field: 'duration', filter: true},
         {   headerName:'Customer',
             sortable: true,
             filter: true,
@@ -72,13 +73,13 @@ function Trainings(props) {
                     </Box>
                 </Flex>
             </div>
-            <div className="ag-theme-alpine" style={{ marginTop: 20, height: 450, width: '90%', margin: 'auto' }}>
+            <div className="ag-theme-alpine" style={{ marginTop: 20, height: 400, width: '95%', margin: 'auto' }}>
                 <AgGridReact
                     onGridReady={onGridReady}
                     rowData={trainings}
                     columnDefs={trainingColumns}
                     pagination={true}
-                    paginationPageSize={8}
+                    paginationPageSize={7}
                     suppressCellSelection={true}>
                 </AgGridReact>
                 </div>
