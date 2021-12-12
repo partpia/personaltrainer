@@ -21,9 +21,9 @@ function Customers(props) {
 
     const fetchCustomers = () => {
         fetch('https://customerrest.herokuapp.com/api/customers')
-        .then(response => response.json())
-        .then(data => setCustomers(data.content))
-        .catch(err => console.error(err))
+            .then(response => response.json())
+            .then(data => setCustomers(data.content))
+            .catch(err => console.error(err))
     }
 
     const onGridReady = (params) => {
@@ -42,28 +42,27 @@ function Customers(props) {
         gridApi.setQuickFilter(e.target.value);
     }
 
-
     const columns = [
         {
-            headerName:'',
+            headerName: '',
             sortable: false,
             filter: false,
             width: 50,
             field: 'links.0.href',
-            cellRendererFramework: params => 
+            cellRendererFramework: params =>
                 < DeleteCustomer customer={params.value} fetchCustomers={fetchCustomers} infoMsg={props.infoMsg} />
         },
         {
-            headerName:'',
+            headerName: '',
             sortable: false,
             filter: false,
             width: 50,
             field: 'links.0.href',
-            cellRendererFramework: params => 
+            cellRendererFramework: params =>
                 < EditCustomer customer={params} fetchCustomers={fetchCustomers} infoMsg={props.infoMsg} />
         },
         {
-            headerName:'',
+            headerName: '',
             sortable: false,
             filter: false,
             width: 60,
@@ -71,13 +70,13 @@ function Customers(props) {
             cellRendererFramework: params =>
                 < AddTraining customerUrl={params.value} customerData={params.data} infoMsg={props.infoMsg} />
         },
-        { field: 'firstname', sortable: true, filter: true, width: 120},
-        { field: 'lastname', sortable: true, filter: true, width: 120},
-        { field: 'streetaddress', headerName: 'Address'},
-        { field: 'postcode', sortable: true, width: 100},
-        { field: 'city', sortable: true, width: 130},
-        { field: 'email', width: 190},
-        { field: 'phone', width: 140}
+        { field: 'firstname', sortable: true, filter: true, width: 120 },
+        { field: 'lastname', sortable: true, filter: true, width: 120 },
+        { field: 'streetaddress', headerName: 'Address' },
+        { field: 'postcode', sortable: true, width: 100 },
+        { field: 'city', sortable: true, width: 130 },
+        { field: 'email', width: 190 },
+        { field: 'phone', width: 140 }
     ]
 
     return (
@@ -90,9 +89,9 @@ function Customers(props) {
                     <Box p="4">
                         <Button onClick={() => exportCustomerCsv()} colorScheme="gray" leftIcon={<Icon as={BiDownload} w={6} h={6} />} >Download customer list</Button>
                     </Box>
-                    <Box p="4" alignSelf="right">
+                    <Box p="4">
                         <InputGroup>
-                            <InputLeftElement pointerEvents="none" children={< Icon as={BiSearch} w={5} h={5}/>}  /> 
+                            <InputLeftElement pointerEvents="none" children={< Icon as={BiSearch} w={5} h={5} />} />
                             <Input variant="flushed" focusBorderColor="lime" type="search" className="search" placeholder="Search" onChange={onFilterTextChanged} />
                         </InputGroup>
                     </Box>

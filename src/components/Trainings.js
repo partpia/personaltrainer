@@ -17,9 +17,9 @@ function Trainings(props) {
 
     const fetchTrainings = () => {
         fetch('https://customerrest.herokuapp.com/gettrainings')
-        .then(response => response.json())
-        .then(data => setTrainings(data))
-        .catch(err => console.error(err))
+            .then(response => response.json())
+            .then(data => setTrainings(data))
+            .catch(err => console.error(err))
     }
 
     const onGridReady = (params) => {
@@ -30,15 +30,15 @@ function Trainings(props) {
     const onFilterTextChanged = (e) => {
         gridApi.setQuickFilter(e.target.value);
     }
-    
+
     const nameFormatter = (params) => {
         if (params.data.customer != null) {
             return params.data.customer.firstname + " " + params.data.customer.lastname;
         } else {
             return "";
-        }        
+        }
     }
-    
+
     const trainingColumns = [
         {
             headerName: '',
@@ -47,14 +47,16 @@ function Trainings(props) {
             cellRendererFramework: params =>
                 < DeleteTraining id={params.value} fetchTrainings={fetchTrainings} infoMsg={props.infoMsg} />
         },
-        { field: 'activity', sortable: true, filter: true},
-        {   field: 'date',
+        { field: 'activity', sortable: true, filter: true },
+        {
+            field: 'date',
             filter: true,
             sortable: true,
             cellRendererFramework: params => format(new Date(params.value), 'dd.MM.yyyy HH:mm')
         },
-        { headerName: 'Duration (min) ', field: 'duration', filter: true},
-        {   headerName:'Customer',
+        { headerName: 'Duration (min) ', field: 'duration', filter: true },
+        {
+            headerName: 'Customer',
             sortable: true,
             filter: true,
             cellRendererFramework: params => nameFormatter(params)
@@ -63,12 +65,12 @@ function Trainings(props) {
 
     return (
         <div>
-            <div style={{ width: '90%', margin: 'auto' }}>
+            <div style={{ width: '95%', margin: 'auto' }}>
                 <Flex>
                     <Box p="4">
                         <InputGroup>
-                            <InputLeftElement pointerEvents="none" children={< Icon as={BiSearch} w={5} h={5}/>}  /> 
-                            <Input variant="flushed" focusBorderColor="lime" type="search" className="search" style={{alignItems:'right'}} placeholder="Search" onChange={onFilterTextChanged} />
+                            <InputLeftElement pointerEvents="none" children={< Icon as={BiSearch} w={5} h={5} />} />
+                            <Input variant="flushed" focusBorderColor="lime" type="search" className="search" style={{ alignItems: 'right' }} placeholder="Search" onChange={onFilterTextChanged} />
                         </InputGroup>
                     </Box>
                 </Flex>
@@ -82,8 +84,8 @@ function Trainings(props) {
                     paginationPageSize={7}
                     suppressCellSelection={true}>
                 </AgGridReact>
-                </div>
-        </div>      
+            </div>
+        </div>
     );
 }
 

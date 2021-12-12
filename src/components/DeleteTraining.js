@@ -1,14 +1,9 @@
 import React, { useRef, useState } from "react";
-import { IconButton, Button, Tooltip } from "@chakra-ui/react";
-import { BiTrashAlt } from "react-icons/bi";
 import {
-    AlertDialog,
-    AlertDialogBody,
-    AlertDialogFooter,
-    AlertDialogHeader,
-    AlertDialogContent,
-    AlertDialogOverlay
-  } from "@chakra-ui/react";
+    AlertDialog, AlertDialogBody, AlertDialogFooter, AlertDialogHeader, AlertDialogContent,
+    AlertDialogOverlay, Button, IconButton, Tooltip
+} from "@chakra-ui/react";
+import { BiTrashAlt } from "react-icons/bi";
 
 function DeleteTraining(props) {
 
@@ -28,7 +23,7 @@ function DeleteTraining(props) {
                 }
             })
             .catch(err => console.error(err))
-        }
+    }
 
     return (
         <div>

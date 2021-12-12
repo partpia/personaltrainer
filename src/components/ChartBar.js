@@ -1,15 +1,9 @@
 import React from "react";
-import { Button, Icon, useDisclosure } from "@chakra-ui/react";
-import { VictoryAxis, VictoryBar, VictoryChart, VictoryTheme, VictoryLabel} from 'victory';
 import {
-    Modal,
-    ModalOverlay,
-    ModalContent,
-    ModalHeader,
-    ModalFooter,
-    ModalBody,
-    ModalCloseButton,
-  } from '@chakra-ui/react';
+    Button, Icon, Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody,
+    ModalCloseButton, useDisclosure
+} from '@chakra-ui/react';
+import { VictoryAxis, VictoryBar, VictoryChart, VictoryTheme, VictoryLabel } from 'victory';
 import { BiBarChart } from "react-icons/bi";
 
 function ChartBar(props) {
@@ -18,11 +12,11 @@ function ChartBar(props) {
 
     return (
         <div>
-            <Button onClick={onOpen} colorScheme="teal" rightIcon={<Icon as={ BiBarChart } w={6} h={6} />} >Show chart</Button>
+            <Button onClick={onOpen} colorScheme="teal" rightIcon={<Icon as={BiBarChart} w={6} h={6} />} >Show chart</Button>
             <Modal size='full' isOpen={isOpen} onClose={onClose} closeOnEsc={true} >
                 <ModalOverlay />
-                    <ModalContent>
-                    <ModalHeader>Chart of activities</ModalHeader>
+                <ModalContent>
+                    <ModalHeader>Chart of activities and durations</ModalHeader>
                     <ModalCloseButton />
                     <ModalBody>
                         <VictoryChart
@@ -37,30 +31,30 @@ function ChartBar(props) {
                                 axisLabelComponent={
                                     <VictoryLabel
                                         dy={40}
-                                        style={{fill:'gray'}}/>}
+                                        style={{ fill: 'gray' }} />}
                             />
                             <VictoryAxis
-                            dependentAxis
-                            tickFormat={props.chartData.duration}
-                            label="Duration (min)"
-                            axisLabelComponent={
-                                <VictoryLabel
-                                    dy={-40}
-                                    style={{fill:'gray'}}/>}
+                                dependentAxis
+                                tickFormat={props.chartData.duration}
+                                label="Duration (min)"
+                                axisLabelComponent={
+                                    <VictoryLabel
+                                        dy={-40}
+                                        style={{ fill: 'gray' }} />}
                             />
                             <VictoryBar
-                                style={{ data: { fill: "teal"} }}
+                                style={{ data: { fill: "teal" } }}
                                 data={props.chartData}
                                 x="activity"
                                 y="duration"
                                 barWidth={40}
                                 labels={({ datum }) => `${datum.duration}`}
-                                labelComponent={<VictoryLabel dy={30} style={{fill:'white'}}/>}
-                                />
+                                labelComponent={<VictoryLabel dy={20} style={{ fill: 'white' }} />}
+                            />
                         </VictoryChart>
                     </ModalBody>
                     <ModalFooter>
-                    <Button onClick={onClose}>Close</Button>
+                        <Button onClick={onClose}>Close</Button>
                     </ModalFooter>
                 </ModalContent>
             </Modal>

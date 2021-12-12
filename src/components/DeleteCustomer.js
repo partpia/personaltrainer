@@ -1,15 +1,9 @@
 import React, { useState, useRef } from "react";
-import { IconButton } from "@chakra-ui/react";
-import { BiTrashAlt } from "react-icons/bi";
 import {
-    AlertDialog,
-    AlertDialogBody,
-    AlertDialogFooter,
-    AlertDialogHeader,
-    AlertDialogContent,
-    AlertDialogOverlay,
-    Button, Tooltip
-  } from "@chakra-ui/react";
+    AlertDialog, AlertDialogBody, AlertDialogFooter, AlertDialogHeader, AlertDialogContent,
+    AlertDialogOverlay, Button, IconButton, Tooltip
+} from "@chakra-ui/react";
+import { BiTrashAlt } from "react-icons/bi";
 
 function DeleteCustomer(props) {
 
@@ -23,7 +17,7 @@ function DeleteCustomer(props) {
                 if (response.ok) {
                     onClose();
                     props.fetchCustomers();
-                    props.infoMsg("Customer deleted!", "", "success");
+                    props.infoMsg("Customer deleted", "", "success");
                 }
                 else
                     props.infoMsg("Delete failed!", "error");
