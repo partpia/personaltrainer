@@ -1,5 +1,5 @@
 import { Flex, Heading, Icon, IconButton, useToast, useColorMode } from "@chakra-ui/react";
-import { BiBarChartSquare, BiBody, BiCalendarWeek, BiRun, BiUser } from "react-icons/bi";
+import { BiBarChartSquare, BiBody, BiCalendarWeek, BiGhost, BiRun, BiUser } from "react-icons/bi";
 import './App.css';
 import Customers from './components/Customers';
 import Trainings from "./components/Trainings";
@@ -23,6 +23,9 @@ function App() {
         isClosable: true,
       });
   }
+  const NotFound = () => (
+    <div style={{margin: 50}}><b>Sorry, nothing here! </b><Icon as={BiGhost} w={8} h={8}></Icon></div>
+  )
 
   return (
     <div className="App">
@@ -47,6 +50,7 @@ function App() {
           <Trainings path="trainings" infoMsg={infoMsg} colorMode={colorMode} />
           <Calendar path="calendar" />
           <Statistics path="statistics" />
+          <NotFound default />
         </Router>
     </div>
   );

@@ -71,13 +71,13 @@ function Customers(props) {
             cellRendererFramework: params =>
                 < AddTraining customerUrl={params.value} customerData={params.data} infoMsg={props.infoMsg} />
         },
-        { field: 'firstname', sortable: true, filter: true, width: 120 },
-        { field: 'lastname', sortable: true, filter: true, width: 120 },
+        { field: 'firstname', sortable: true, filter: true, width: 130 },
+        { field: 'lastname', sortable: true, filter: true, width: 130 },
         { field: 'streetaddress', headerName: 'Address' },
         { field: 'postcode', sortable: true, width: 100 },
         { field: 'city', sortable: true, width: 130 },
-        { field: 'email', width: 190 },
-        { field: 'phone', width: 140 }
+        { field: 'email', width: 200 },
+        { field: 'phone', width: 160 }
     ]
 
     return (
