@@ -1,4 +1,4 @@
-import { Flex, Heading, Icon, useToast } from "@chakra-ui/react";
+import { Flex, Heading, Icon, IconButton, useToast, useColorMode } from "@chakra-ui/react";
 import { BiBarChartSquare, BiBody, BiCalendarWeek, BiRun, BiUser } from "react-icons/bi";
 import './App.css';
 import Customers from './components/Customers';
@@ -6,10 +6,12 @@ import Trainings from "./components/Trainings";
 import Calendar from "./components/Calendar";
 import Statistics from "./components/Statistics";
 import { Router, Link, Link as ReachLink } from "@reach/router";
+import { MoonIcon, SunIcon } from '@chakra-ui/icons';
 
 function App() {
 
   const toast = useToast();
+  const { colorMode, toggleColorMode } = useColorMode();
 
   const infoMsg = (title, text, color) => {
     toast({
@@ -37,10 +39,12 @@ function App() {
           <Link as={ReachLink} to='trainings'><Icon marginRight='6px' as={BiRun} />Trainings</Link>
           <Link as={ReachLink} to='calendar'><Icon marginRight='6px' as={BiCalendarWeek} />Calendar</Link>
           <Link as={ReachLink} to='statistics'><Icon marginRight='6px' as={BiBarChartSquare} />Statistics</Link>
+          <IconButton variant='outline' onClick={toggleColorMode} icon={colorMode === 'light' ? <SunIcon /> : <MoonIcon />}>
+          </IconButton>
         </Flex>
         <Router>
-          <Customers path="/" infoMsg={infoMsg} />
-          <Trainings path="trainings" infoMsg={infoMsg}/>
+          <Customers path="/" infoMsg={infoMsg} colorMode={colorMode} />
+          <Trainings path="trainings" infoMsg={infoMsg} colorMode={colorMode} />
           <Calendar path="calendar" />
           <Statistics path="statistics" />
         </Router>

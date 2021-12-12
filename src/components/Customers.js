@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { AgGridReact } from 'ag-grid-react';
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-alpine.css';
+import 'ag-grid-community/dist/styles/ag-theme-alpine-dark.css';
 import { Box, Button, Flex, Icon, Input, InputGroup, InputLeftElement } from "@chakra-ui/react";
 import { BiDownload, BiSearch } from "react-icons/bi";
 import AddCustomer from "./AddCustomer";
@@ -97,7 +98,7 @@ function Customers(props) {
                     </Box>
                 </Flex>
             </div>
-            <div className="ag-theme-alpine" style={{ marginTop: 20, height: 400, width: '95%', margin: 'auto' }}>
+            <div className={props.colorMode == 'light' ? "ag-theme-alpine" : "ag-theme-alpine-dark"} style={{ marginTop: 20, height: 400, width: '95%', margin: 'auto' }}>
                 <AgGridReact
                     onGridReady={onGridReady}
                     rowData={customers}

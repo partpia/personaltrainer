@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { AgGridReact } from 'ag-grid-react';
+import 'ag-grid-community/dist/styles/ag-grid.css';
+import 'ag-grid-community/dist/styles/ag-theme-alpine.css';
+import 'ag-grid-community/dist/styles/ag-theme-alpine-dark.css';
 import { Box, Flex, Icon, Input, InputGroup, InputLeftElement } from "@chakra-ui/react";
 import { BiSearch } from "react-icons/bi";
 import { format } from 'date-fns';
@@ -75,7 +78,7 @@ function Trainings(props) {
                     </Box>
                 </Flex>
             </div>
-            <div className="ag-theme-alpine" style={{ marginTop: 20, height: 400, width: '95%', margin: 'auto' }}>
+            <div className={props.colorMode == 'light' ? "ag-theme-alpine" : "ag-theme-alpine-dark"} style={{ marginTop: 20, height: 400, width: '95%', margin: 'auto' }}>
                 <AgGridReact
                     onGridReady={onGridReady}
                     rowData={trainings}
