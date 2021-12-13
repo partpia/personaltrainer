@@ -34,7 +34,6 @@ function Statistics() {
             }))
             .value();
         setChartData(groupSumData);
-        console.log(chartData);
     }
 
     return (
