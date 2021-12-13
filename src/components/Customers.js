@@ -98,7 +98,7 @@ function Customers(props) {
                     </Box>
                 </Flex>
             </div>
-            <div className={props.colorMode == 'light' ? "ag-theme-alpine" : "ag-theme-alpine-dark"} style={{ marginTop: 20, height: 400, width: '95%', margin: 'auto' }}>
+            <div className={props.colorMode === 'light' ? "ag-theme-alpine" : "ag-theme-alpine-dark"} style={{ marginTop: 20, height: 400, width: '95%', margin: 'auto' }}>
                 <AgGridReact
                     onGridReady={onGridReady}
                     rowData={customers}

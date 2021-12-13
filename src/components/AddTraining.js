@@ -39,7 +39,15 @@ function AddTraining(props) {
                 body: JSON.stringify(training)
             })
             .then(onClose())
-            .then(_ => props.infoMsg("Training added", "", "success"))
+            .then(_ => {
+                props.infoMsg("Training added", "", "success");
+                setTraining({
+                    date: setDate(new Date()),
+                    activity: '',
+                    duration: '',
+                    customer: props.customerUrl
+                }); // clears form
+            })
             .catch(err => console.error(err))
     }
 

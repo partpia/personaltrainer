@@ -33,6 +33,15 @@ function AddCustomer(props) {
             .then(_ => {
                 props.fetchCustomers();
                 props.infoMsg("Customer added", "", "success");
+                setCustomer({
+                    firstname: '',
+                    lastname: '',
+                    streetaddress: '',
+                    postcode: '',
+                    city: '',
+                    email: '',
+                    phone: ''
+                }); // clears form
             })
             .catch(err => console.error(err))
     }
